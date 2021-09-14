@@ -14,15 +14,23 @@ function nextSequence() {
     var sound = new Audio("sounds/" + colours[nextRandomNumber] + ".mp3");
     sound.play();
 }
+// for using in laptop
+// function gameStart() {
+//     $(document).keydown(function () {
+//         nextSequence();
+//         $(document).off("keydown");
+//         startClick();
+//     });
+// }
 
+//for touch screen devices
 function gameStart() {
-    $(document).keydown(function () {
+    $("body").click(function () {
         nextSequence();
-        $(document).off("keydown");
+        $("body").off("click");
         startClick();
     });
 }
-
 
 function startClick() {
     $(".btn").click(function () {
@@ -37,7 +45,7 @@ function startClick() {
         if (playerSequence[playerSequence.length - 1] != sequence[playerSequence.length - 1]) {
             $("body").addClass("game-over");
             var sound = new Audio("sounds/wrong.mp3");
-        sound.play();
+            sound.play();
             sequence = [];
             playerSequence = [];
             setTimeout(() => {
@@ -51,7 +59,7 @@ function startClick() {
             if (playerSequence.length == sequence.length) {
                 playerSequence = [];
                 setTimeout(() => {
-                    nextSequence();                    
+                    nextSequence();
                 }, 700);
             }
         }
